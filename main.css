@@ -1,0 +1,17 @@
+.well{
+    max-height: 300px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+body{
+    background-color: rgb(218, 214, 214);
+}
+h3{
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+title{
+    background-color: rgb(102, 99, 99);
+    font-family: 'Times New Roman', Times, serif;
+}
