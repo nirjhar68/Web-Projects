@@ -1,37 +1,45 @@
-/*********************************************************************************
-*  WEB422 – Assignment 1
-*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  
-*  No part of this assignment has been copied manually or electronically from any other source
-*  (including web sites) or distributed to other students.
-* 
-*  Name: Md Nuhel Nawaz Chowdhury Student ID: 109455162 Date: 09/12/2018
-*  Heroku link:  https://rocky-fortress-77320.herokuapp.com/teams
-*
-********************************************************************************/ 
+jQuery(function($) {'use strict',
 
-const urlString = "https://safe-tor-42217.herokuapp.com/";
-$(document).ready(function(){ // start jQuery
-    // request data to REST server with jQuery-ajax
-    $(".dropdown-menu").on("click", ".data-menu", function(e) {
+	//#main-slider
+	$(function(){
+		$('.carousel').carousel({
+			interval: 4000,
+			pause: "false"
+		});
+	});
 
-        // Prevent a link from opening the URL
-        e.preventDefault();
 
-        $this = $(this);
+	// accordian
+	$('.accordion-toggle').on('click', function(){
+		$(this).closest('.panel-group').children().each(function(){
+		$(this).find('>.panel-heading').removeClass('active');
+		 });
 
-        $.ajax({
-            // according to data-query type, request data to REST
-            url: urlString + $this.attr("data-query"),
-            method: "GET",
-            contentType: "application/json"
-        })
-        .done(function(data) {
-            $("#data").empty();
-            $("#data").html("<h3>" + $this.text() + "</h3>");
-            $("#data").append(JSON.stringify(data));
-        })
-        .fail(function(err){
-            console.log("error: " + err.statusText);
-        });
-    });
+	 	$(this).closest('.panel-heading').toggleClass('active');
+	});
+
+
+	// portfolio filter
+	$(window).load(function(){'use strict';
+		var $portfolio_selectors = $('.portfolio-filter >li>a');
+		var $portfolio = $('.portfolio-items');
+		$portfolio.isotope({
+			itemSelector : '.portfolio-item',
+			layoutMode : 'fitRows'
+		});
+		
+		$portfolio_selectors.on('click', function(){
+			$portfolio_selectors.removeClass('active');
+			$(this).addClass('active');
+			var selector = $(this).attr('data-filter');
+			$portfolio.isotope({ filter: selector });
+			return false;
+		});
+	});
+
+
+	//Pretty Photo
+	$("a[rel^='prettyPhoto']").prettyPhoto({
+		social_tools: false
+	});	
 });
